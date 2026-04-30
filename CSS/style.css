@@ -911,6 +911,10 @@ header {
   cursor: pointer;
 }
 
+.project.hide {
+  display: none;
+}
+
 .project img {
   position: absolute;
   object-fit: cover;
