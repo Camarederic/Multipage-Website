@@ -41,7 +41,7 @@ filterLinks.forEach((filterLink) => {
 // End of Filtering Projects
 
 // Video
-const videoContainer = document.querySelector("video-container");
+const videoContainer = document.querySelector(".video-container");
 const mainVideo = document.querySelector("video");
 const playPauseBtn = document.querySelector(".play-pause i");
 const progressBar = document.querySelector(".progress-bar");
@@ -57,6 +57,36 @@ const fullscreenBtn = document.querySelector(".fullscreen i");
 const videoTimeline = document.querySelector(".video-timeline");
 const currentVideoTime = document.querySelector(".current-time");
 const videoDuration = document.querySelector(".video-duration");
+const playButton = document.querySelector(".play-btn");
+const xButton = document.querySelector(".x-btn i");
+
+let timer;
+
+playButton.addEventListener("click", () => {
+  videoContainer.classList.add("show-video");
+});
+
+xButton.addEventListener("click", () => {
+  videoContainer.classList.remove("show-video");
+  mainVideo.pause()
+});
+
+// Controls
+const hideControls = () => {
+  if (mainVideo.paused) return;
+  timer = setTimeout(() => {
+    videoContainer.classList.remove("show-controls");
+  }, 3000);
+};
+
+hideControls();
+
+videoContainer.addEventListener("mousemove", () => {
+  videoContainer.classList.add("show-controls");
+  clearTimeout(timer);
+  hideControls();
+});
+// End of Controls
 
 // Progress Bar
 const formatTime = (time) => {
