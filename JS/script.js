@@ -44,6 +44,14 @@ filterLinks.forEach((filterLink) => {
 const videoContainer = document.querySelector("video-container");
 const mainVideo = document.querySelector("video");
 const playPauseBtn = document.querySelector(".play-pause i");
+const progressBar = document.querySelector(".progress-bar");
+
+mainVideo.addEventListener("timeupdate", (e) => {
+  let { currentTime, duration } = e.target;
+
+  let percent = (currentTime / duration) * 100;
+  progressBar.style.width = `${percent}%`;
+});
 
 playPauseBtn.addEventListener("click", () => {
   if (mainVideo.paused) {
