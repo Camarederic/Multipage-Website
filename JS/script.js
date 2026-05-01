@@ -49,6 +49,9 @@ const skipBackward = document.querySelector(".skip-backward i");
 const skipForward = document.querySelector(".skip-forward i");
 const volumeBtn = document.querySelector(".volume i");
 const volumeSlider = document.querySelector(".left input");
+const speedBtn = document.querySelector(".playback-speed span");
+const speedOptions = document.querySelector(".speed-options");
+const speedOptionsItems = document.querySelectorAll(".speed-options div");
 
 // Progress Bar
 mainVideo.addEventListener("timeupdate", (e) => {
@@ -109,5 +112,30 @@ skipForward.addEventListener("click", () => {
   mainVideo.currentTime += 5;
 });
 // End of Skip Buttons
+
+// Speed Options
+speedBtn.addEventListener("click", () => {
+  speedOptions.classList.toggle("show");
+});
+
+document.addEventListener("click", (e) => {
+  if (
+    e.target.tagName !== "SPAN" ||
+    e.target.className !== "material-symbols-rounded"
+  ) {
+    speedOptions.classList.remove("show");
+  }
+});
+
+speedOptionsItems.forEach((option) => {
+  option.addEventListener("click", () => {
+    mainVideo.playbackRate = option.dataset.speed;
+    speedOptions
+      .querySelector(".active-option")
+      .classList.remove("active-option");
+    option.classList.add("active-option");
+  });
+});
+// End of Speed Options
 
 // End of Video
