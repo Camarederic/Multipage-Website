@@ -93,6 +93,30 @@ videoTimeline.addEventListener("click", (e) => {
 mainVideo.addEventListener("loadeddata", () => {
   videoDuration.innerText = formatTime(mainVideo.duration);
 });
+
+const draggableProgressBar = (e) => {
+  let timelineWidth = videoTimeline.clientWidth;
+  progressBar.style.width = `${e.offsetX}px`;
+  mainVideo.currentTime = (e.offsetX / timelineWidth) * mainVideo.duration;
+  currentVideoTime.innerText = formatTime(mainVideo.currentTime);
+};
+
+videoTimeline.addEventListener("mousedown", () => {
+  videoTimeline.addEventListener("mousemove", draggableProgressBar);
+});
+
+videoTimeline.addEventListener("mouseup", () => {
+  videoTimeline.removeEventListener("mousemove", draggableProgressBar);
+});
+
+videoTimeline.addEventListener("mousemove", (e) => {
+  const progressTime = document.querySelector(".progress-area span");
+  let offsetX = e.offsetX;
+  progressTime.style.left = `${offsetX}px`;
+  let timelineWidth = videoTimeline.clientWidth;
+  let progressBarTime = (e.offsetX / timelineWidth) * mainVideo.duration;
+  progressTime.innerText = formatTime(progressBarTime);
+});
 // End of Video Timeline
 
 // Volume

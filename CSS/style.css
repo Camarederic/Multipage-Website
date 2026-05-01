@@ -1171,6 +1171,16 @@ header {
   transform: translateY(-50%);
 }
 
+.progress-area span,
+.progress-bar::before {
+  display: none;
+}
+
+.video-timeline:hover .progress-area span,
+.video-timeline:hover .progress-bar::before {
+  display: block;
+}
+
 .video-controls {
   width: 100%;
   display: flex;
@@ -1237,7 +1247,7 @@ header {
   border-radius: 0.4rem;
   opacity: 0;
   visibility: hidden;
-  transition: opacity .15s ease;
+  transition: opacity 0.15s ease;
   z-index: 10;
 }
 
