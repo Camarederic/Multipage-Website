@@ -48,6 +48,7 @@ const progressBar = document.querySelector(".progress-bar");
 const skipBackward = document.querySelector(".skip-backward i");
 const skipForward = document.querySelector(".skip-forward i");
 const volumeBtn = document.querySelector(".volume i");
+const volumeSlider = document.querySelector(".left input");
 
 // Progress Bar
 mainVideo.addEventListener("timeupdate", (e) => {
@@ -66,7 +67,7 @@ playPauseBtn.addEventListener("click", () => {
 });
 // End of Progress Bar
 
-// Volume Button
+// Volume
 volumeBtn.addEventListener("click", () => {
   if (!volumeBtn.classList.contains("fa-volume-high")) {
     mainVideo.volume = 0.5;
@@ -75,8 +76,19 @@ volumeBtn.addEventListener("click", () => {
     mainVideo.volume = 0.0;
     volumeBtn.classList.replace("fa-volume-high", "fa-volume-xmark");
   }
+
+  volumeSlider.value = mainVideo.volume;
 });
-// End of Volume Button
+
+volumeSlider.addEventListener("input", (e) => {
+  mainVideo.volume = e.target.value * 1;
+  if (mainVideo.volume === 0) {
+    volumeBtn.classList.replace("fa-volume-high", "fa-volume-xmark");
+  } else {
+    volumeBtn.classList.replace("fa-volume-xmark", "fa-volume-high");
+  }
+});
+// End of Volume
 
 // Play/Pause Button
 mainVideo.addEventListener("play", () => {
