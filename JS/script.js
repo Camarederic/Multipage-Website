@@ -52,6 +52,8 @@ const volumeSlider = document.querySelector(".left input");
 const speedBtn = document.querySelector(".playback-speed span");
 const speedOptions = document.querySelector(".speed-options");
 const speedOptionsItems = document.querySelectorAll(".speed-options div");
+const picInPicBtn = document.querySelector(".pic-in-pic span");
+const fullscreenBtn = document.querySelector(".fullscreen i");
 
 // Progress Bar
 mainVideo.addEventListener("timeupdate", (e) => {
@@ -137,5 +139,17 @@ speedOptionsItems.forEach((option) => {
   });
 });
 // End of Speed Options
+
+// Picture in Picture Mode
+picInPicBtn.addEventListener("click", () => {
+  mainVideo.requestPictureInPicture();
+});
+// End of Picture in Picture Mode
+
+// Fullscreen Mode
+fullscreenBtn.addEventListener("click", () => {
+  mainVideo.requestFullscreen();
+});
+// End of Fullscreen Mode
 
 // End of Video
