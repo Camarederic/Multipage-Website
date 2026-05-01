@@ -47,7 +47,9 @@ const playPauseBtn = document.querySelector(".play-pause i");
 const progressBar = document.querySelector(".progress-bar");
 const skipBackward = document.querySelector(".skip-backward i");
 const skipForward = document.querySelector(".skip-forward i");
+const volumeBtn = document.querySelector(".volume i");
 
+// Progress Bar
 mainVideo.addEventListener("timeupdate", (e) => {
   let { currentTime, duration } = e.target;
 
@@ -62,7 +64,21 @@ playPauseBtn.addEventListener("click", () => {
     mainVideo.pause();
   }
 });
+// End of Progress Bar
 
+// Volume Button
+volumeBtn.addEventListener("click", () => {
+  if (!volumeBtn.classList.contains("fa-volume-high")) {
+    mainVideo.volume = 0.5;
+    volumeBtn.classList.replace("fa-volume-xmark", "fa-volume-high");
+  } else {
+    mainVideo.volume = 0.0;
+    volumeBtn.classList.replace("fa-volume-high", "fa-volume-xmark");
+  }
+});
+// End of Volume Button
+
+// Play/Pause Button
 mainVideo.addEventListener("play", () => {
   playPauseBtn.classList.replace("fa-play", "fa-pause");
 });
@@ -70,7 +86,9 @@ mainVideo.addEventListener("play", () => {
 mainVideo.addEventListener("pause", () => {
   playPauseBtn.classList.replace("fa-pause", "fa-play");
 });
+// End of Play/Pause Button
 
+// Skip Buttons
 skipBackward.addEventListener("click", () => {
   mainVideo.currentTime -= 5;
 });
@@ -78,4 +96,6 @@ skipBackward.addEventListener("click", () => {
 skipForward.addEventListener("click", () => {
   mainVideo.currentTime += 5;
 });
+// End of Skip Buttons
+
 // End of Video
