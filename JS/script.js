@@ -45,6 +45,8 @@ const videoContainer = document.querySelector("video-container");
 const mainVideo = document.querySelector("video");
 const playPauseBtn = document.querySelector(".play-pause i");
 const progressBar = document.querySelector(".progress-bar");
+const skipBackward = document.querySelector(".skip-backward i");
+const skipForward = document.querySelector(".skip-forward i");
 
 mainVideo.addEventListener("timeupdate", (e) => {
   let { currentTime, duration } = e.target;
@@ -67,5 +69,13 @@ mainVideo.addEventListener("play", () => {
 
 mainVideo.addEventListener("pause", () => {
   playPauseBtn.classList.replace("fa-pause", "fa-play");
+});
+
+skipBackward.addEventListener("click", () => {
+  mainVideo.currentTime -= 5;
+});
+
+skipForward.addEventListener("click", () => {
+  mainVideo.currentTime += 5;
 });
 // End of Video
